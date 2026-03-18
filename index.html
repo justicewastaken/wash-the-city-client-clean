@@ -994,9 +994,6 @@ footer a { color: var(--yellow); text-decoration: none; }
       <div class="overlay"><span>Customer Photo</span></div>
     </div>
   </div>
-  <div class="photos-toggle">
-    <button id="togglePhotosBtn" class="btn-outline">See more</button>
-  </div>
 </section>
 
 <!-- CTA BANNER -->
@@ -1195,34 +1192,4 @@ const reviews = [
 // Photo gallery "See more" toggle
 (function() {
   const btn = document.getElementById('togglePhotosBtn');
-  const grid = document.getElementById('photosGrid');
-  if (!btn || !grid) return;
-
-  // Initially hide all items beyond the first 4
-  const items = grid.querySelectorAll('.gallery-item');
-  const hiddenItems = [];
-  items.forEach((item, index) => {
-    if (index >= 4) {
-      item.classList.add('photo-hidden');
-      hiddenItems.push(item);
-    }
-  });
-
-  if (hiddenItems.length === 0) {
-    btn.style.display = 'none';
-    return;
-  }
-
-  btn.addEventListener('click', function() {
-    const isCollapsed = hiddenItems[0].classList.contains('photo-hidden');
-    // If collapsed, show all (remove photo-hidden); if expanded, hide all (add photo-hidden)
-    hiddenItems.forEach(item => {
-      item.classList.toggle('photo-hidden', !isCollapsed);
-    });
-    btn.textContent = isCollapsed ? 'Show Less' : 'See All (' + hiddenItems.length + ' more)';
-    // Optional: scroll smoothly to the first newly revealed item
-    if (isCollapsed) {
-      hiddenItems[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  });
 })();
